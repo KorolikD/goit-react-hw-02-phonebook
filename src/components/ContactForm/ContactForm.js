@@ -1,13 +1,17 @@
 import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
+import {
+  Form,
+  Field,
+  ErrorMessage,
+  FormGroup,
+  SubmitButton,
+} from './ContactForm.styled';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({
-  name: Yup.string()
-  .required('Required'),
-  number:
-    Yup.string()
-    .required('Required'),
+  name: Yup.string().required('Required'),
+  number: Yup.string().required('Required'),
 });
 
 export const ContactForm = ({ onSubmit }) => (
@@ -23,20 +27,18 @@ export const ContactForm = ({ onSubmit }) => (
     }}
   >
     <Form>
-      <label>
+      <FormGroup>
         Name
         <Field type="text" name="name" required></Field>
         <ErrorMessage name="name" component={'span'} />
-      </label>
-      <label>
+      </FormGroup>
+      <FormGroup>
         Number
         <Field type="number" name="number" required></Field>
         <ErrorMessage name="number" component={'span'} />
-      </label>
+      </FormGroup>
 
-      <button type="submit" style={{ backgroundColor: 'white' }}>
-        Add contact
-      </button>
+      <SubmitButton type="submit">Add contact</SubmitButton>
     </Form>
   </Formik>
 );

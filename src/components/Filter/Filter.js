@@ -1,11 +1,13 @@
+import { FilterInput, Label } from './Filter.styled';
+
 export const Filter = ({ filter, onChange }) => (
-  <label>
+  <Label>
     Find contact by name
-    <input
+    <FilterInput
       type="text"
       name="filter"
       value={filter}
       onChange={evt => onChange(evt.target.value)}
     />
-  </label>
+  </Label>
 );
