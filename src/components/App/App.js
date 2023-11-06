@@ -39,8 +39,6 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  onDelete = () => {};
-
   reset = () => {
     this.setState({ name: '', number: '' });
   };
