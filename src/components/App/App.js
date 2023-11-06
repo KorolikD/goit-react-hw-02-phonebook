@@ -10,6 +10,8 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: '',
+    name: '',
+    number: '',
   };
 
   addContact = evt => {
@@ -33,12 +35,20 @@ export class App extends Component {
   };
 
   onChange = evt => {
-    const { name, value } = evt.currentTarget;
+    const { name, value } = evt.target;
     this.setState({ [name]: value });
   };
 
+  onDelete = () => {};
+
   reset = () => {
     this.setState({ name: '', number: '' });
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(item => item.id !== contactId),
+    }));
   };
 
   render() {
@@ -63,7 +73,10 @@ export class App extends Component {
         <Filter filter={filter} onChange={this.onChange} />
 
         {visibleContacts.length > 0 && (
-          <ContactsList contacts={visibleContacts} />
+          <ContactsList
+            contacts={visibleContacts}
+            onDelete={this.deleteContact}
+          />
         )}
 
         <GlobalStyles />
