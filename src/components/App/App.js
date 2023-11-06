@@ -10,13 +10,12 @@ export class App extends Component {
   state = {
     contacts: [],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  addContact = evt => {
+  addContact = (evt, name, number) => {
     evt.preventDefault();
-    const { contacts, name, number } = this.state;
+
+    const { contacts } = this.state;
     const isContactInList = contacts.some(
       ({ name: contactName }) =>
         contactName.toLowerCase().trim() === name.toLowerCase().trim()
@@ -38,11 +37,6 @@ export class App extends Component {
     this.setState({ name: '', number: '' });
   };
 
-  onChangeContact = evt => {
-    const { name, value } = evt.target;
-    this.setState({ [name]: value });
-  };
-
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   onChangeFilter = value => {
     this.setState({ filter: value });
@@ -56,7 +50,7 @@ export class App extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log('App', this.state);
     const { contacts, name, number, filter } = this.state;
 
     const visibleContacts = contacts.filter(({ name }) =>
@@ -69,7 +63,6 @@ export class App extends Component {
         <ContactForm
           name={name}
           number={number}
-          onChange={this.onChangeContact}
           handleSubmit={this.addContact}
         />
 
