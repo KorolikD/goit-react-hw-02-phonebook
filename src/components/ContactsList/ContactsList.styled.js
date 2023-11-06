@@ -4,7 +4,7 @@ export const ListContacts = styled.ul`
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  width: 1200px;
+  max-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: center;

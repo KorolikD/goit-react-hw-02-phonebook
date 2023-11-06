@@ -9,6 +9,7 @@ import {
 } from './ContactForm.styled';
 import * as Yup from 'yup';
 
+// Валідація за допомогою Yup
 const SignupSchema = Yup.object().shape({
   name: Yup.string().required('Required'),
   number: Yup.string().required('Required'),
@@ -29,12 +30,12 @@ export const ContactForm = ({ onSubmit }) => (
     <Form>
       <FormGroup>
         Name
-        <Field type="text" name="name" required></Field>
+        <Field type="text" name="name"></Field>
         <ErrorMessage name="name" component={'span'} />
       </FormGroup>
       <FormGroup>
         Number
-        <Field type="number" name="number" required></Field>
+        <Field type="number" name="number"></Field>
         <ErrorMessage name="number" component={'span'} />
       </FormGroup>
 
@@ -42,49 +43,3 @@ export const ContactForm = ({ onSubmit }) => (
     </Form>
   </Formik>
 );
-
-// import { Component } from 'react';
-
-// export class ContactForm extends Component {
-//   state = {
-//     name: '',
-//     number: '',
-//   };
-
-//   onChangeContact = evt => {
-//     const { name, value } = evt.target;
-//     this.setState({ [name]: value });
-//   };
-
-//   render() {
-//     console.log('Form', this.state);
-//     const { name, number } = this.state;
-//     return (
-//       <form onSubmit={e => this.props.handleSubmit(e, name, number)}>
-//         <label>
-//           Name
-//           <input
-//             type="text"
-//             name="name"
-//             value={name}
-//             required
-//             onChange={this.onChangeContact}
-//           />
-//         </label>
-//         <label>
-//           Number
-//           <input
-//             type="tel"
-//             name="number"
-//             value={number}
-//             required
-//             onChange={this.onChangeContact}
-//           />
-//         </label>
-//         <button type="submit" style={{ backgroundColor: 'white' }}>
-//           Add contact
-//         </button>
-//       </form>
-//     );
-//   }
-// }
