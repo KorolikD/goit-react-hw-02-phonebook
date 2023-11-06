@@ -12,9 +12,8 @@ export class App extends Component {
     filter: '',
   };
 
-  addContact = (evt, name, number) => {
-    evt.preventDefault();
-
+  addContact = ({ name, number }) => {
+    console.log(name, number);
     const { contacts } = this.state;
     const isContactInList = contacts.some(
       ({ name: contactName }) =>
@@ -26,23 +25,15 @@ export class App extends Component {
       : this.setState(prevState => ({
           contacts: [
             ...prevState.contacts,
-            { id: nanoid(), name: name.trim(), number: number.trim() },
+            { id: nanoid(), name: name.trim(), number },
           ],
         }));
-
-    this.reset();
   };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
-  };
-
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   onChangeFilter = value => {
     this.setState({ filter: value });
   };
 
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(item => item.id !== contactId),
@@ -51,7 +42,7 @@ export class App extends Component {
 
   render() {
     console.log('App', this.state);
-    const { contacts, name, number, filter } = this.state;
+    const { contacts, filter } = this.state;
 
     const visibleContacts = contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase())
@@ -60,11 +51,7 @@ export class App extends Component {
     return (
       <>
         <h1>Phonebook</h1>
-        <ContactForm
-          name={name}
-          number={number}
-          handleSubmit={this.addContact}
-        />
+        <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
         <Filter filter={filter} onChange={this.onChangeFilter} />
