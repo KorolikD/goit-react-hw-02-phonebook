@@ -34,15 +34,21 @@ export class App extends Component {
     this.reset();
   };
 
-  onChange = evt => {
-    const { name, value } = evt.target;
-    this.setState({ [name]: value });
-  };
-
   reset = () => {
     this.setState({ name: '', number: '' });
   };
 
+  onChangeContact = evt => {
+    const { name, value } = evt.target;
+    this.setState({ [name]: value });
+  };
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  onChangeFilter = value => {
+    this.setState({ filter: value });
+  };
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   deleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(item => item.id !== contactId),
@@ -63,12 +69,12 @@ export class App extends Component {
         <ContactForm
           name={name}
           number={number}
-          onChange={this.onChange}
+          onChange={this.onChangeContact}
           handleSubmit={this.addContact}
         />
 
         <h2>Contacts</h2>
-        <Filter filter={filter} onChange={this.onChange} />
+        <Filter filter={filter} onChange={this.onChangeFilter} />
 
         {visibleContacts.length > 0 && (
           <ContactsList
