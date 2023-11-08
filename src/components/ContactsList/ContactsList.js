@@ -3,6 +3,7 @@ import {
   ListContacts,
   ListItem,
   Text,
+  BoldText,
 } from './ContactsList.styled';
 
 export const ContactsList = ({ contacts, onDelete }) => (
@@ -10,7 +11,7 @@ export const ContactsList = ({ contacts, onDelete }) => (
     {contacts.map(({ id, name, number }) => (
       <ListItem key={id}>
         <Text>
-          <span style={{ fontWeight: 500 }}>{name}</span>: {number}
+          <BoldText>{name}</BoldText>: {number}
         </Text>
         <FilterButton type="button" onClick={() => onDelete(id)}>
           Delete

@@ -2,10 +2,8 @@ import { nanoid } from 'nanoid';
 import { Component } from 'react';
 import { GlobalStyles } from 'styles';
 
-import { Filter } from 'components/Filter/Filter';
-import { ContactsList } from 'components/ContactsList/ContactsList';
-import { ContactForm } from 'components/ContactForm/ContactForm';
 import { Title, TitleH2 } from './App.styled';
+import { ContactForm, Filter, ContactsList } from 'components';
 
 export class App extends Component {
   state = {
@@ -40,12 +38,16 @@ export class App extends Component {
     }));
   };
 
+  visibleContactsFilter = arr => {
+    return arr.filter(({ name }) =>
+      name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+  };
+
   render() {
     const { contacts, filter } = this.state;
 
-    const visibleContacts = contacts.filter(({ name }) =>
-      name.toLowerCase().includes(filter.toLowerCase())
-    );
+    const visibleContacts = this.visibleContactsFilter(contacts);
 
     return (
       <>

@@ -35,6 +35,10 @@ export const Text = styled.p`
   font: inherit;
 `;
 
+export const BoldText = styled.span`
+  font-weight: 500;
+`;
+
 export const FilterButton = styled.button`
   padding-right: ${p => p.theme.spacing(2)};
   padding-left: ${p => p.theme.spacing(2)};
